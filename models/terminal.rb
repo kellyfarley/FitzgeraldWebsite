@@ -5,28 +5,26 @@ class Text
 		@wordcount = textarray.length
 		@sentencearray = text.split(".")
 		@sentencecount = sentencearray.length
+		if genre == "poem"
+			@norepeats = textarray.uniq
+			@norepeatslength = norepeats.length
+			@textlength = textarray.length
+			@repeats = textarray.find_all { |x| textarray.count(x) > 1 }
+			@sortedrepeats = repeats.sort!
+		end
 	end
 end
 
-# class Poem
-# 	def initialize
-# 		@norepeats = textarray.uniq
-# 		@norepeatslength = norepeats.length
-# 		@textlength = textarray.length
-# 		if norepeatslength != textlength
-# 			then puts "These are the words that show up more than 2 times in your poem.  While repetition can sometimes serve a purpose, using the same adjective/verb/noun multiple times is boring.  Consider revising."
-# 			@repeats = textarray.find_all { |x| textarray.count(x) > 1 }
-# 			@sorted repeats = repeats.sort!
-# 		end
-# 	#modify this so that it ignores common words: I, a, the, and, that
-# 	goodtimes = textarray.count("good")
-# 	verytimes = textarray.count("very")
-# 	reallytimes = textarray.count("really")
-# 	gettimes = textarray.count("get")
-# 	saidtimes = textarray.count("said")
-# 	stufftimes = textarray.count("stuff")
-# 	thingtimes = textarray.count("thing")
-# 	weakwordtimes = goodtimes + verytimes + reallytimes + gettimes + saidtimes + stufftimes + thingtimes
+
+	# @goodtimes = textarray.count("good")
+	# @verytimes = textarray.count("very")
+	# @reallytimes = textarray.count("really")
+	# @gettimes = textarray.count("get")
+	# @saidtimes = textarray.count("said")
+	# @stufftimes = textarray.count("stuff")
+	# @thingtimes = textarray.count("thing")
+	# weakwordtimes = goodtimes + verytimes + reallytimes + gettimes + saidtimes + stufftimes + thingtimes
+
 # 	if weakwordtimes >= 1
 # 		then puts "Below are the weak, hackneyed words you used that could be replaced with words with a stronger connotation."
 # 	end
