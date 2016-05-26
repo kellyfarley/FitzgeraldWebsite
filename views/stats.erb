@@ -1,7 +1,52 @@
-<h1> Here are some stats about your writing. </h1>
+<style>
+body {
+        background-color: #DAD1C0;
+        font-family: "helvetica";
+		font-size: 1em;
+		color: #A80808;
+}
+</style>
 
-<h3> You have <%= @wordcount %> words. You have <%= @sentencecount %> sentences."</h3>
+<h1> Here are some stats about your <%= @genre %>. </h1>
 
-<h3> These are the words that show up more than 2 times in your poem.  While repetition can sometimes serve a purpose, using the same adjective/verb/noun multiple times is boring.  Consider revising. </h3>
+<h3> You have <%= @wordcount %> words. You have <%= @sentencecount %> sentences. </h3>
 
-<h5> <%= @sortedrepeats %>
+<% if @norepeatslength != @textlength %> 
+<h3> These are the words that show up more than 2 times in your <%= @genre %>.  While repetition can sometimes serve a purpose, using the same adjective/verb/noun multiple times is boring.  Consider revising. </h3>
+
+<p> <%= @sortedrepeats %> </p>
+
+<% end %>
+
+<% if @weakwordtimes %>
+<h3> Below are the weak, hackneyed words you used that could be replaced with words with a stronger connotation. Consider replacing. </h3>
+<% end %>
+
+<% if @goodtimes > 0 %>
+	<p> You have used the weak adjective <strong> good </strong> <%= @goodtimes %> times. </p>
+<% end %>
+<% if @verytimes > 0 %>
+	<p> You have used the adverb <strong> very </strong> <%= @verytimes %> times. </p>
+<% end %>
+<% if @reallytimes > 0 %>
+	<p> You have used the adverb <strong> really </strong> <%= @reallytimes %> times. </p>
+<% end %>
+<% if @gettimes > 0 %>
+	<p> You have used the vague verb <strong> get </strong> <%= @gettimes %> times. </p>
+<% end %>
+<% if @saidtimes > 0 %>
+	<p> You have used the vague verb <strong> said </strong> <%= @saidtimes %>  times. </p>
+<% end %>
+<% if @stufftimes > 0 %>
+	<p> You have used the vague noun <strong> stuff </strong> <%= @stufftimes %>  times. </p>
+<% end %>
+<% if @thingtimes > 0 %>
+	<p> You have used the vague noun <strong> thing </strong> <%= @thingtimes %> times. </p>
+<% end %>
+
+<% if @passivetimes > 0 %>
+<h3> Passive voice is when you use a tense of "to be" followed by another verb.  For example, "Gatsby is portrayed as flawed" is passive, while "Fitzgerald potrays Gatsby as flawed" is clear and to the point. While passive voice is sometimes okay, it usually deters from the conciseness of your writing. </h3>
+
+<p> You have used passive voice <%= @passivetimes %> times, using <strong> is </strong> <%= @istimes %> times, <strong> was </strong> <%= @wastimes %> times, and <strong> were </strong> <%= @weretimes %> times.  See if you can make these sentences more direct. </p>
+
+<% end %>
