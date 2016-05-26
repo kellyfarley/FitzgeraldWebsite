@@ -1,4 +1,8 @@
+#any way to make this code less redundant?
+#how to hide not relevant stats?
+#how to make certain stats show only for certain genres? new classes?
 class Text
+	attr_accessor :genre, :wordcount, :sentencecount, :sortedrepeats, :goodtimes, :verytimes, :reallytimes, :gettimes, :saidtimes, :stufftimes, :thingtimes, :passivetimes, :istimes, :wastimes, :weretimes
 	def initialize(genre, text)
 		@genre = genre
 		@text = text
@@ -8,9 +12,6 @@ class Text
 		@wordcount = @textarray.length
 		@sentencearray = @text.split(".")
 		@sentencecount = @sentencearray.length
-		puts "Here are some stats about your writing."
-		puts "You have #{@wordcount} words."
-		puts "You have #{@sentencecount} sentences."
 	end
 	def repeats
 		@norepeats = @textarray.uniq
@@ -18,10 +19,6 @@ class Text
 		@textlength = @textarray.length
 		@repeats = @textarray.find_all { |x| @textarray.count(x) > 1 }
 		@sortedrepeats = @repeats.sort!
-		if @norepeatslength != @textlength
-			then puts "These are the words that show up more than 2 times in your poem.  While repetition can sometimes serve a purpose, using the same adjective/verb/noun multiple times is boring.  Consider revising."
-			puts @sortedrepeats
-		end
 	end
 	def weakwords
 		@goodtimes = @textarray.count("good")
@@ -32,41 +29,12 @@ class Text
 		@stufftimes = @textarray.count("stuff")
 		@thingtimes = @textarray.count("thing")
 		@weakwordtimes = @goodtimes + @verytimes + @reallytimes + @gettimes + @saidtimes + @stufftimes + @thingtimes
-		if @weakwordtimes >= 1
-			then puts "Below are the weak, hackneyed words you used that could be replaced with words with a stronger connotation."
-		end
-		if @goodtimes >= 1
-			then puts "You have used the weak adjective 'good' #{@goodtimes} times. Consider replacing."
-		end
-		if @verytimes >= 1
-			then puts "You have used the adverb 'very' #{@verytimes} times. Consider removing."
-		end
-		if @reallytimes >= 1
-			then puts "You have used the adverb 'really' #{@reallytimes} times. Consider removing."
-		end
-		if @gettimes >= 1
-			then puts "You have used the vague verb 'get' #{@gettimes} times. Consider replacing."
-		end
-		if @saidtimes >= 1
-			then puts "You have used the vague verb 'said' #{@saidtimes} times. Consider replacing."
-		end
-		if @stufftimes >= 1
-			then puts "You have used the vague noun 'stuff' #{@stufftimes} times. Consider replacing."
-		end
-		if @thingtimes >= 1
-			then puts "You have used the vague noun 'thing' #{@thingtimes} times. Consider replacing."
-		end
 	end
 	def passivevoice
 		@istimes = @textarray.count("is")
 		@wastimes = @textarray.count("was")
 		@weretimes = @textarray.count("were")
 		@passivetimes = @istimes + @wastimes + @weretimes
-		if @passivetimes >= 1
-			then puts "Passive voice is when you use a tense of 'to be' followed by another verb.  For example, 'Gatsby is portrayed as flawed' is passive, while 'Fitzgerald potrays Gatsby as flawed' is clear and to the point."
-			puts "While passive voice is sometimes ok, it usually deters from the conciseness of your writing."
-			puts "You have used passive voice #{@passivetimes} times, using 'is' #{@istimes} times, 'was' #{@wastimes} times, and 'were' #{@weretimes} times.  See if you can make these sentences more direct."
-		end
 	end
 	def secondperson
 		if @genre == "formal essay"
